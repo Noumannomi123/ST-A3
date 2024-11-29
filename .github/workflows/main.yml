@@ -21,10 +21,8 @@ jobs:
 
       - name: Compile Code
         run: |
-          mkdir -p out
-          find src -name "*.java" > sources.txt
-          javac -d out @sources.txt
-
+           javac -cp "./lib/*" src/UnitTesting.java src/LoginApp.java
+           cd src
       - name: Run Tests
         run: |
            java -cp ".;../lib/*" org.junit.runner.JUnitCore UnitTesting
