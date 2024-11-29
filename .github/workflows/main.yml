@@ -22,9 +22,8 @@ jobs:
       - name: Compile Code
         run: |
            javac -cp "./lib/*" src/UnitTesting.java src/LoginApp.java
-           cd src
       - name: Run Tests
         run: |
-           echo $CLASSPATH
+           cd src
            dir
            java -cp ".:../lib/*" org.junit.runner.JUnitCore UnitTesting
