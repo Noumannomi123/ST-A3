@@ -25,4 +25,4 @@ jobs:
            cd src
       - name: Run Tests
         run: |
-           java -cp ".;../lib/*" org.junit.runner.JUnitCore UnitTesting
+           java -cp ".:../lib/*" org.junit.runner.JUnitCore UnitTesting
