@@ -25,5 +25,4 @@ jobs:
       - name: Run Tests
         run: |
            cd src
-           dir
-           java -cp ".:../lib/*" org.junit.runner.JUnitCore UnitTesting
+           java -Djava.awt.headless=true -cp ".:../lib/*" org.junit.runner.JUnitCore UnitTesting
