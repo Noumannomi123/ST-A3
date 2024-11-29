@@ -25,4 +25,6 @@ jobs:
            cd src
       - name: Run Tests
         run: |
+           echo $CLASSPATH
+           dir
            java -cp ".:../lib/*" org.junit.runner.JUnitCore UnitTesting
