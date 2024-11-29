@@ -10,9 +10,9 @@ import java.sql.ResultSet;
 public class LoginApp extends JFrame {
     private JTextField emailField;
     private JPasswordField passwordField;
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/softwaretesting";
-    private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "123123";
+    private static final String DB_URL = "jdbc:postgresql://ep-dawn-dew-a432lh6u.us-east-1.aws.neon.tech:5432/verceldb?user=default&password=ZP5mcdf3seFN&sslmode=require";
+    private static final String DB_USER = "default";
+    private static final String DB_PASSWORD = "ZP5mcdf3seFN";
 
     public LoginApp() {
         setTitle("Login Screen");
@@ -61,14 +61,14 @@ public class LoginApp extends JFrame {
         String userName = null;
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-            String query = "SELECT name FROM users WHERE email = ? AND password = ?";
+            String query = "SELECT username FROM users WHERE email = ? AND password_hash = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, email);
             stmt.setString(2, password);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                userName = rs.getString("Name");
+                userName = rs.getString("username");
             }
             rs.close();
             stmt.close();
