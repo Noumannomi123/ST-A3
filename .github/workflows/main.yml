@@ -1,0 +1,30 @@
+name: Run Unit Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '20' # Adjust to your project's Java version
+
+      - name: Compile Code
+        run: |
+          mkdir -p out
+          find src -name "*.java" > sources.txt
+          javac -d out @sources.txt
+
+      - name: Run Tests
+        run: |
+          java -cp "out:lib/junit-4.13.2.jar" org.junit.runner.JUnitCore UnitTesting
