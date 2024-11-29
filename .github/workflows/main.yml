@@ -17,15 +17,11 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '20' # Adjust to your project's Java version
-      - name: Install PostgreSQL
-        run: |
-          choco install postgresql
-          net start postgresql-x64-13  # Adjust based on version and setup
-
+     
       - name: Compile Code
         run: |
            javac -cp "./lib/*" src/UnitTesting.java src/LoginApp.java
       - name: Run Tests
         run: |
            cd src
-           java -cp ".:../lib/*" org.junit.runner.JUnitCore UnitTesting
+           java -cp ".;../lib/*" org.junit.runner.JUnitCore UnitTesting
